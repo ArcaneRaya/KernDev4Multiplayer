@@ -64,6 +64,46 @@ public class CustomNetworkManager : NetworkManager
         BuildDebugger.Log("Server stopped");
     }
 
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        base.OnServerDisconnect(conn);
+        foreach (var connection in clientConnection.clients)
+        {
+            if (connection.networkConnection == conn)
+            {
+                connection.Disconnected();
+                return;
+            }
+        }
+    }
+
+    public override void OnServerConnect(NetworkConnection conn)
+    {
+        base.OnServerConnect(conn);
+        Debug.Log("Client connected with IP: " + conn.address);
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+        isConnected = true;
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
+        if (conn.lastError == NetworkError.Timeout && !isConnected)
+        {
+            BuildDebugger.Log("Couldn't connect to server, is server running?");
+        }
+        else
+        {
+            BuildDebugger.Log("Lost connection to server");
+            sceneManagement.Reset();
+            SceneManager.LoadScene(0);
+        }
+    }
+
     private void OnInternetMatchCreate(bool success, string extendedInfo, MatchInfo responseData)
     {
         if (success)
@@ -114,46 +154,6 @@ public class CustomNetworkManager : NetworkManager
         else
         {
             BuildDebugger.Log("Join match failed");
-        }
-    }
-
-    public override void OnServerDisconnect(NetworkConnection conn)
-    {
-        base.OnServerDisconnect(conn);
-        foreach (var connection in clientConnection.clients)
-        {
-            if (connection.networkConnection == conn)
-            {
-                connection.Disconnected();
-                return;
-            }
-        }
-    }
-
-    public override void OnServerConnect(NetworkConnection conn)
-    {
-        base.OnServerConnect(conn);
-        Debug.Log("Client connected with IP: " + conn.address);
-    }
-
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        base.OnClientConnect(conn);
-        isConnected = true;
-    }
-
-    public override void OnClientDisconnect(NetworkConnection conn)
-    {
-        base.OnClientDisconnect(conn);
-        if (conn.lastError == NetworkError.Timeout && !isConnected)
-        {
-            BuildDebugger.Log("Couldn't connect to server, is server running?");
-        }
-        else
-        {
-            BuildDebugger.Log("Lost connection to server");
-            sceneManagement.Reset();
-            SceneManager.LoadScene(0);
         }
     }
 }

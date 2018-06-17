@@ -78,6 +78,101 @@ public class GameManager : MonoBehaviour
 
     private HackManager hackManager;
 
+
+    public void StartGame()
+    {
+        gameStarted = true;
+        currentMessagePair.value = GetCurrentMessagePair();
+    }
+
+    public void StartGameplay()
+    {
+        BuildDebugger.Log("gameplay started");
+        gameplayStarted = true;
+        foreach (var connection in clientConnection.clients)
+        {
+            if (connection.isConnected)
+            {
+                connection.client.SetGameplayState(true, connection.isLoggedIn);
+            }
+        }
+    }
+
+    public void PlayCurrentMessage()
+    {
+        if (currentMessagePair.value == null)
+        {
+            currentMessagePair.value = GetCurrentMessagePair();
+            if (currentMessagePair.value == null)
+            {
+                Debug.LogWarning("No message loaded");
+                return;
+            }
+        }
+        if (currentMessagePair.value.voiceMessage.triggerGame != null)
+        {
+            if (currentMessagePair.value.voiceMessage.triggerMoment == VoiceMessage.TriggerMoment.START)
+            {
+                InvokeGameOnAll(JsonUtility.ToJson(currentMessagePair.value.voiceMessage.triggerGame));
+            }
+            else
+            {
+                InvokeTransmissionBreak(true);
+            }
+        }
+        else
+        {
+            InvokeTransmissionBreak(true);
+        }
+        if (currentMessagePair.value.voiceMessage.unBlockPackId > -1)
+        {
+            unblockedPacks.Add(currentMessagePair.value.voiceMessage.unBlockPackId);
+            foreach (var connection in clientConnection.clients)
+            {
+                if (connection.isConnected)
+                {
+                    connection.client.gameHandler.UnblockGamePack(currentMessagePair.value.voiceMessage.unBlockPackId);
+                }
+            }
+        }
+        OnPlayMessage.Raise();
+    }
+
+    public void OnMessageDonePlaying()
+    {
+        InvokeTransmissionBreak(false);
+        if (currentMessagePair.value.voiceMessage.triggerMoment == VoiceMessage.TriggerMoment.END)
+        {
+            InvokeGameOnAll(JsonUtility.ToJson(currentMessagePair.value.voiceMessage.triggerGame));
+        }
+        currentMessagePair.value = GetCurrentMessagePair();
+    }
+
+    public void InvokeGameOnAll(string json)
+    {
+        //string json = JsonUtility.ToJson(invokeTestGame);
+        foreach (var connection in clientConnection.clients)
+        {
+            if (connection.isConnected)
+            {
+                connection.client.gameHandler.InvokeGame(json);
+            }
+        }
+    }
+
+    public void InvokeTransmissionBreak(bool state)
+    {
+        inAudioTransmission = state;
+        foreach (var connection in clientConnection.clients)
+        {
+            // this is where i fixed it
+            if (connection.isConnected)
+            {
+                connection.client.gameHandler.InvokeTransmissionBreak(state);
+            }
+        }
+    }
+
     private void OnEnable()
     {
         hackManager = GetComponent<HackManager>();
@@ -107,35 +202,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // cheat for testing / if playtest breaks
         if (Input.GetKeyDown(KeyCode.N))
         {
             PlayCurrentMessage();
-        }
-    }
-
-
-    public void InvokeGameOnAll(string json)
-    {
-        //string json = JsonUtility.ToJson(invokeTestGame);
-        foreach (var connection in clientConnection.clients)
-        {
-            if (connection.isConnected)
-            {
-                connection.client.gameHandler.InvokeGame(json);
-            }
-        }
-    }
-
-    public void InvokeTransmissionBreak(bool state)
-    {
-        inAudioTransmission = state;
-        foreach (var connection in clientConnection.clients)
-        {
-            // this is where i fixed it
-            if (connection.isConnected)
-            {
-                connection.client.gameHandler.InvokeTransmissionBreak(state);
-            }
         }
     }
 
@@ -212,109 +282,11 @@ public class GameManager : MonoBehaviour
         GetNextGameData();
     }
 
-    //private void SetFillerMessages(List<FillerMessage> receivedFillerMessages)
-    //{
-    //    fillerMessages = receivedFillerMessages;
-    //    Debug.Log("Filler Messages received");
-    //    PopulateFeed();
-    //}
-
-    //private void PopulateFeed()
-    //{
-    //    feed = new List<FeedItem>();
-    //    for (int i = 0; i < fillerMessages.Count; i++)
-    //    {
-    //        feed.Add(new FeedItem(i, fillerMessages[i].message, fillerMessages[i].image));
-    //    }
-    //}
-
-    //public FeedItem GetSocialFeedItem()
-    //{
-    //    if (feed == null)
-    //    {
-    //        return null;
-    //    }
-    //    return GetSocialFeedItem(feed.Count - 1);
-    //}
-
-    //public FeedItem GetSocialFeedItem(int id)
-    //{
-    //    if (feed == null)
-    //    {
-    //        return null;
-    //    }
-    //    if (id < 0 || id >= feed.Count)
-    //    {
-    //        return null;
-    //    }
-    //    foreach (var feedItem in feed)
-    //    {
-    //        if (feedItem.ID == id)
-    //        {
-    //            return feedItem;
-    //        }
-    //    }
-    //    throw new System.ArgumentException("No feed item found for ID " + id.ToString());
-    //}
-
-    public void StartGame()
-    {
-        gameStarted = true;
-        currentMessagePair.value = GetCurrentMessagePair();
-        //PlayCurrentMessage();
-        // Commented for obsolete functionality
-        //foreach (var connection in clientConnection.clients)
-        //{
-        //    OnGameRequested(connection);
-        //}
-    }
-
-    public void StartGameplay()
-    {
-        BuildDebugger.Log("gameplay started");
-        gameplayStarted = true;
-        foreach (var connection in clientConnection.clients)
-        {
-            if (connection.isConnected)
-            {
-                connection.client.SetGameplayState(true, connection.isLoggedIn);
-            }
-        }
-    }
-
-    //public void StartHacked()
-    //{
-    //    List<int> availableTeamIndexes = new List<int>(); ;
-    //    for (int i = 0; i < clientConnection.clients.Count; i++)
-    //    {
-    //        if (clientConnection.clients[i].isConnected && !clientConnection.clients[i].isHacked)
-    //        {
-    //            availableTeamIndexes.Add(i);
-    //        }
-    //    }
-    //    if (availableTeamIndexes.Count < 2)
-    //    {
-    //        return;
-    //    }
-    //    int teamOnePos = availableTeamIndexes[Random.Range(0, availableTeamIndexes.Count)];
-    //    ClientConnection teamOne = clientConnection.clients[teamOnePos];
-    //    availableTeamIndexes.Remove(teamOnePos);
-    //    int teamTwoPos = availableTeamIndexes[Random.Range(0, availableTeamIndexes.Count)];
-    //    ClientConnection teamTwo = clientConnection.clients[teamTwoPos];
-    //    HackSession.SetupSession(gameInfoCollection, hackedGame1, hackedGame2, teamOne, teamTwo);
-    //}
-
     private void OnClientAdded(ClientConnection connection)
     {
         connection.OnReconnected += OnClientConnected;
         connection.OnGameFinished += OnClientFinishedGame;
         OnClientConnected(connection);
-        // Commented for obsolete functionality
-        //connection.OnGameRequested += OnGameRequested;
-        //if (gameStarted)
-        //{
-        //    OnGameRequested(connection);
-        //}
     }
 
     private void OnClientFinishedGame(ClientConnection connection)
@@ -334,56 +306,6 @@ public class GameManager : MonoBehaviour
             }
         }
         PlayCurrentMessage();
-    }
-
-    public void PlayCurrentMessage()
-    {
-        if (currentMessagePair.value == null)
-        {
-            currentMessagePair.value = GetCurrentMessagePair();
-            if (currentMessagePair.value == null)
-            {
-                Debug.LogWarning("No message loaded");
-                return;
-            }
-        }
-        if (currentMessagePair.value.voiceMessage.triggerGame != null)
-        {
-            if (currentMessagePair.value.voiceMessage.triggerMoment == VoiceMessage.TriggerMoment.START)
-            {
-                InvokeGameOnAll(JsonUtility.ToJson(currentMessagePair.value.voiceMessage.triggerGame));
-            }
-            else
-            {
-                InvokeTransmissionBreak(true);
-            }
-        }
-        else
-        {
-            InvokeTransmissionBreak(true);
-        }
-        if (currentMessagePair.value.voiceMessage.unBlockPackId > -1)
-        {
-            unblockedPacks.Add(currentMessagePair.value.voiceMessage.unBlockPackId);
-            foreach (var connection in clientConnection.clients)
-            {
-                if (connection.isConnected)
-                {
-                    connection.client.gameHandler.UnblockGamePack(currentMessagePair.value.voiceMessage.unBlockPackId);
-                }
-            }
-        }
-        OnPlayMessage.Raise();
-    }
-
-    public void OnMessageDonePlaying()
-    {
-        InvokeTransmissionBreak(false);
-        if (currentMessagePair.value.voiceMessage.triggerMoment == VoiceMessage.TriggerMoment.END)
-        {
-            InvokeGameOnAll(JsonUtility.ToJson(currentMessagePair.value.voiceMessage.triggerGame));
-        }
-        currentMessagePair.value = GetCurrentMessagePair();
     }
 
     private bool HasReachedNextRequirement(ClientConnection connection)

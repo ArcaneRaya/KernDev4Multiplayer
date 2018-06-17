@@ -97,6 +97,39 @@ public class Client : NetworkBehaviour
         sceneManagement.UnloadAll();
     }
 
+    public void SetGameplayState(bool state, bool isLoggedIn)
+    {
+        RpcSetGameplayState(state, isLoggedIn);
+    }
+
+    [ClientRpc]
+    public void RpcPassLoginState(bool loggedIn)
+    {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        if (!loggedIn)
+        {
+            BuildDebugger.Log("Alright, time to login");
+            onDisplayLogin.Raise();
+        }
+        else
+        {
+            BuildDebugger.Log("Don't need to login, already logged");
+            UpdateLocalTeamInfo();
+        }
+    }
+
+    [Command]
+    public void CmdGetConnection(string adress)
+    {
+        //Debug.Log("Player IP posted by player: " + adress);
+        NetworkConnection conn = connectionToClient;
+        conn.address = adress;
+        clientConnection = clientConnectionBase.Get(conn, this);
+    }
+
     [Command]
     private void CmdGetGames()
     {
@@ -107,6 +140,37 @@ public class Client : NetworkBehaviour
     private void CmdTriggerLoadGames()
     {
         RpcLoadGames(tempUnblockedPacks.ToArray());
+    }
+
+    [Command]
+    private void CmdGetPack(int itterator)
+    {
+        RpcSetPack(tempPacks.ids[itterator], tempPacks.values[itterator]);
+    }
+
+    [Command]
+    private void CmdGetGame(int itterator)
+    {
+        RpcSetGame(tempGames.ids[itterator], tempGames.values[itterator]);
+    }
+
+    [Command]
+    private void CmdGetLoginState()
+    {
+        RpcPassLoginState(clientConnection.isLoggedIn);
+    }
+
+    [Command]
+    private void CmdSetScore(int score)
+    {
+        clientConnection.SetScore(score);
+    }
+
+    [Command]
+    private void CmdUpdateLocalTeamInfo()
+    {
+        clientConnection.serverConnection.GetFinishedGames(clientConnection.currentTeam, SetFinishedGames);
+        //RpcSetLocalTeamInfo(clientConnection.currentTeam);
     }
 
     [ClientRpc]
@@ -133,12 +197,6 @@ public class Client : NetworkBehaviour
         tempPacks.values = new string[size];
         CmdGetPack(getPackItterator);
         //CmdGetGames();
-    }
-
-    [Command]
-    private void CmdGetPack(int itterator)
-    {
-        RpcSetPack(tempPacks.ids[itterator], tempPacks.values[itterator]);
     }
 
     [ClientRpc]
@@ -177,21 +235,15 @@ public class Client : NetworkBehaviour
         //CmdTriggerLoadGames();
     }
 
-    [Command]
-    private void CmdGetGame(int itterator)
-    {
-        RpcSetGame(tempGames.ids[itterator], tempGames.values[itterator]);
-    }
-
     [ClientRpc]
-    private void RpcSetGame(int v1, string v2)
+    private void RpcSetGame(int gameID, string gameJson)
     {
         if (!isLocalPlayer)
         {
             return;
         }
-        tempGames.ids[getGameItterator] = v1;
-        tempGames.values[getGameItterator] = v2;
+        tempGames.ids[getGameItterator] = gameID;
+        tempGames.values[getGameItterator] = gameJson;
         getGameItterator++;
         if (getGameItterator < tempGames.ids.Length)
         {
@@ -211,84 +263,6 @@ public class Client : NetworkBehaviour
             return;
         }
         UnPackGames(tempPacks, tempGames, unblockedPacks);
-    }
-
-    private void UnPackGames(JSonPack packs, JSonPack games, int[] unblockedPacks)
-    {
-        List<int> unblocked = new List<int>(unblockedPacks);
-        clientState.gamePacks = new List<GamePack>();
-        foreach (var gamePackJson in packs.values)
-        {
-            GamePack gamePack = ScriptableObject.CreateInstance<GamePack>();
-            JsonUtility.FromJsonOverwrite(gamePackJson, gamePack);
-            foreach (var gameIDPair in gamePack.gameIDPairs)
-            {
-                gameIDPair.gameInfo = GameInfoBase.FromJson(games.GetJsonOfId(gameIDPair.id));
-            }
-            gamePack.blocked = gamePack.startBlocked;
-            if (unblocked.Contains(gamePack.id))
-            {
-                gamePack.blocked = false;
-            }
-            clientState.gamePacks.Add(gamePack);
-            Debug.Log("GamePack " + clientState.gamePacks[clientState.gamePacks.Count - 1].id);
-        }
-        gamesLoaded = true;
-        CmdGetLoginState();
-    }
-
-    [Command]
-    private void CmdGetLoginState()
-    {
-        RpcPassLoginState(clientConnection.isLoggedIn);
-    }
-
-    [Command]
-    private void CmdSetScore(int score)
-    {
-        clientConnection.SetScore(score);
-    }
-
-    [Command]
-    public void CmdGetConnection(string adress)
-    {
-        //Debug.Log("Player IP posted by player: " + adress);
-        NetworkConnection conn = connectionToClient;
-        conn.address = adress;
-        clientConnection = clientConnectionBase.Get(conn, this);
-    }
-
-    [Command]
-    private void CmdUpdateLocalTeamInfo()
-    {
-        clientConnection.serverConnection.GetFinishedGames(clientConnection.currentTeam, SetFinishedGames);
-        //RpcSetLocalTeamInfo(clientConnection.currentTeam);
-    }
-
-    private void SetFinishedGames(string finishedGamesJson)
-    {
-        IDPack finishedGames = JsonUtility.FromJson<IDPack>(finishedGamesJson);
-        clientConnection.finishedGames = new List<int>(finishedGames.values);
-        RpcSetLocalTeamInfo(clientConnection.currentTeam, finishedGames);
-    }
-
-    [ClientRpc]
-    public void RpcPassLoginState(bool loggedIn)
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        if (!loggedIn)
-        {
-            BuildDebugger.Log("Alright, time to login");
-            onDisplayLogin.Raise();
-        }
-        else
-        {
-            BuildDebugger.Log("Don't need to login, already logged");
-            UpdateLocalTeamInfo();
-        }
     }
 
     [ClientRpc]
@@ -317,11 +291,6 @@ public class Client : NetworkBehaviour
         teamScore.value = teamInfo.score;
     }
 
-    public void SetGameplayState(bool state, bool isLoggedIn)
-    {
-        RpcSetGameplayState(state, isLoggedIn);
-    }
-
     [ClientRpc]
     private void RpcSetGameplayState(bool state, bool isLoggedIn)
     {
@@ -335,5 +304,36 @@ public class Client : NetworkBehaviour
         {
             sceneManagement.ReloadScenes();
         }
+    }
+
+    private void SetFinishedGames(string finishedGamesJson)
+    {
+        IDPack finishedGames = JsonUtility.FromJson<IDPack>(finishedGamesJson);
+        clientConnection.finishedGames = new List<int>(finishedGames.values);
+        RpcSetLocalTeamInfo(clientConnection.currentTeam, finishedGames);
+    }
+
+    private void UnPackGames(JSonPack packs, JSonPack games, int[] unblockedPacks)
+    {
+        List<int> unblocked = new List<int>(unblockedPacks);
+        clientState.gamePacks = new List<GamePack>();
+        foreach (var gamePackJson in packs.values)
+        {
+            GamePack gamePack = ScriptableObject.CreateInstance<GamePack>();
+            JsonUtility.FromJsonOverwrite(gamePackJson, gamePack);
+            foreach (var gameIDPair in gamePack.gameIDPairs)
+            {
+                gameIDPair.gameInfo = GameInfoBase.FromJson(games.GetJsonOfId(gameIDPair.id));
+            }
+            gamePack.blocked = gamePack.startBlocked;
+            if (unblocked.Contains(gamePack.id))
+            {
+                gamePack.blocked = false;
+            }
+            clientState.gamePacks.Add(gamePack);
+            Debug.Log("GamePack " + clientState.gamePacks[clientState.gamePacks.Count - 1].id);
+        }
+        gamesLoaded = true;
+        CmdGetLoginState();
     }
 }
