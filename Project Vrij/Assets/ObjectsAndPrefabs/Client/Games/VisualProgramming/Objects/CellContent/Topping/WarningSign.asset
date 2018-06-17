@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56f07a8eb6bd4b12a5950bb87ddb020, type: 3}
+  m_Name: WarningSign
+  m_EditorClassIdentifier: 
+  contentType: 3
+  id: 0
+  prefab: {fileID: 1579531645882440, guid: 86105458d007bc14fae53626719dcac0, type: 2}

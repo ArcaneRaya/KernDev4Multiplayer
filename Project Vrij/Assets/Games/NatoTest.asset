@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7110a83ab1e914a57badaecc4474d7f7, type: 3}
+  m_Name: NatoTest
+  m_EditorClassIdentifier: 
+  id: -1
+  gameType: 2
+  requiredGame:
+    id: -1
+    gameInfo: {fileID: 0}
+  completed: 0
+  completionScore: 0
+  title: The Nato Test
+  tutorialText: 
+  word:
+    sentencePreWord: Ik heb een jas nodig gemaakt van
+    word: cavia
+    sentencePostWord: voor het grote Vox gala vanavond!
+    alternatives:
+    - konijn
+    - calve
+    - cava
+    solved: 0

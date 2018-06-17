@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7110a83ab1e914a57badaecc4474d7f7, type: 3}
+  m_Name: 344_ComboNATO
+  m_EditorClassIdentifier: 
+  id: 80
+  gameType: 2
+  requiredGame:
+    id: 79
+    gameInfo: {fileID: 11400000, guid: 0f3ba5d34e4344fe48cbcc19cdb59287, type: 2}
+  completed: 0
+  completionScore: 201
+  title: Combo 5
+  tutorialText: Gebruik de NATO spiekbrief om erachter te komen wat De Vox elkaar
+    vertellen.
+  word:
+    sentencePreWord: Een vogel in de hand is beter dan
+    word: tien
+    sentencePostWord: in de lucht.
+    alternatives:
+    - vis
+    - tegels
+    - tim
+    solved: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a0cd63a307043d7b3bcfebad9d7821, type: 3}
+  m_Name: 331_NATO_explanation
+  m_EditorClassIdentifier: 
+  id: 70
+  gameType: 7
+  requiredGame:
+    id: 69
+    gameInfo: {fileID: 11400000, guid: 3a1088df89f8b454fa3df2d77f41d9e9, type: 2}
+  completed: 0
+  completionScore: 0
+  title: NATO Uitleg
+  tutorialText: 
+  message: De Vox sturen elkaar geheime berichten om elkaar te vertellen wat ze gaan
+    doen zodat ik het niet kan lezen. Ik heb ontdekt dat ze het doen met het NATO
+    alfabet. Kunnen jullie mij helpen om de berichten te ontcijferen? Ik heb een spiek
+    briefje bij jullie laten brengen om te helpen!
+  useButton: 1
+  buttonText: Verder
+  postClickMessage: 

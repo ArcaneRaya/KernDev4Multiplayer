@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98ac7784e391a4c7fbfb51960925337f, type: 3}
+  m_Name: ClientConnection
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 5dd60653bd769e14bbcdaa51334afef4, type: 2}
+  teamJoined: {fileID: 11400000, guid: 72564d6ca6671c342befdc6f4b221572, type: 2}
+  serverConnection: {fileID: 11400000, guid: dcfdc08b90be24f18a62fc0307faf0f9, type: 2}
+  currentTeam:
+    teamName: 
+    pass: 
+    teamID: 0
+    assignmentIndex: 0
+    score: 0
+    chosen: 0
+  client: {fileID: 0}
+  isConnected: 0
+  isHacked: 0
+  isLoggedIn: 0
+  connectionID: 0
+  address: 

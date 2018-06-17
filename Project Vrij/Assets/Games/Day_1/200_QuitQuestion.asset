@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a0cd63a307043d7b3bcfebad9d7821, type: 3}
+  m_Name: 200_QuitQuestion
+  m_EditorClassIdentifier: 
+  id: 53
+  gameType: 7
+  requiredGame:
+    id: -1
+    gameInfo: {fileID: 0}
+  completed: 0
+  completionScore: 300
+  title: 
+  tutorialText: 
+  message: Druk op de knop om de sessie van vandaag af te sluiten.
+  useButton: 1
+  buttonText: Afsluiten
+  postClickMessage: 

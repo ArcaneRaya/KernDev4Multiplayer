@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef73434cf434f1f9feb82e2d90fb6d, type: 3}
+  m_Name: 100_IntroPack
+  m_EditorClassIdentifier: 
+  id: 26
+  packType: 0
+  requiredCompletedBefore:
+    id: -1
+    packInfo: {fileID: 0}
+  startBlocked: 1
+  blocked: 0
+  gameIDPairs:
+  - id: 89
+    gameInfo: {fileID: 11400000, guid: 8ce44be35088a46af9a7dbc6e0e71e93, type: 2}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9438e863b89054060907041781d3e782, type: 3}
+  m_Name: 206_Bjorn_Ending
+  m_EditorClassIdentifier: 
+  day: 3
+  played: 0
+  dayEnding: 0
+  triggerMoment: 0
+  triggerGame: {fileID: 11400000, guid: 8d36597ba18d44cfe87d5386d19efe31, type: 2}
+  unBlockPackId: 0
+  character: 1
+  message: {fileID: 8300000, guid: 42ec12976f8ce428e87c6a1f2fc93906, type: 3}

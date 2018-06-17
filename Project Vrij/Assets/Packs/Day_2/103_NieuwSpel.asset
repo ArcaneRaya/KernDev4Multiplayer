@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef73434cf434f1f9feb82e2d90fb6d, type: 3}
+  m_Name: 103_NieuwSpel
+  m_EditorClassIdentifier: 
+  id: 28
+  packType: 0
+  requiredCompletedBefore:
+    id: -1
+    packInfo: {fileID: 0}
+  startBlocked: 1
+  blocked: 0
+  gameIDPairs:
+  - id: 71
+    gameInfo: {fileID: 11400000, guid: 7b02366a7232d4a6081e20b4e16ca006, type: 2}
+  - id: 72
+    gameInfo: {fileID: 11400000, guid: 035a274624fda457290d2ce021f2cf37, type: 2}
+  - id: 73
+    gameInfo: {fileID: 11400000, guid: 22d8fb4c3d1f84f5abdba50c19e36a03, type: 2}
+  - id: 74
+    gameInfo: {fileID: 11400000, guid: 987cc0a44c10a4a94b1abbd5c3838537, type: 2}
+  - id: 75
+    gameInfo: {fileID: 11400000, guid: 27edd854f1d97406b82243ee62bf8928, type: 2}

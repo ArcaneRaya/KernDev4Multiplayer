@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7110a83ab1e914a57badaecc4474d7f7, type: 3}
+  m_Name: 332_NATO_1
+  m_EditorClassIdentifier: 
+  id: 71
+  gameType: 2
+  requiredGame:
+    id: 70
+    gameInfo: {fileID: 11400000, guid: 0c78ad5f2bee04a0cb3b9737c3ce4aea, type: 2}
+  completed: 0
+  completionScore: 132
+  title: NATO code 1
+  tutorialText: Gebruik de NATO spiekbrief om erachter te komen wat De Vox elkaar
+    vertellen.
+  word:
+    sentencePreWord: Wie heeft er nog een lekker stukje
+    word: hond
+    sentencePostWord: voor mijn salade?
+    alternatives:
+    - kont
+    - kip
+    - tomaat
+    solved: 0

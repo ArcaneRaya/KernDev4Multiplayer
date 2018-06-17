@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56f07a8eb6bd4b12a5950bb87ddb020, type: 3}
+  m_Name: BlockBot
+  m_EditorClassIdentifier: 
+  contentType: 1
+  id: 0
+  prefab: {fileID: 1927062061832250, guid: 4b16b834018124b4aa26ac674e4179c7, type: 2}

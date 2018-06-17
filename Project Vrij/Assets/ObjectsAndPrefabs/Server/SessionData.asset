@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201fae25c0c071a4ab9c7088d733510d, type: 3}
+  m_Name: SessionData
+  m_EditorClassIdentifier: 
+  school:
+    schoolName: utrecht school 1
+    schoolID: 13
+  group:
+    groupName: groep 7A
+    groupID: 1
+  teams:
+    teams:
+    - teamName: team 1 groep 7A
+      pass: password
+      teamID: 34
+      assignmentIndex: 0
+      score: 0
+      chosen: 0
+    - teamName: team 1 groep 7C
+      pass: password
+      teamID: 35
+      assignmentIndex: 0
+      score: 0
+      chosen: 0
+    - teamName: team 1 groep 7D
+      pass: password
+      teamID: 36
+      assignmentIndex: 0
+      score: 0
+      chosen: 1
+    - teamName: team 1 groep 7E
+      pass: password
+      teamID: 37
+      assignmentIndex: 0
+      score: 0
+      chosen: 1
+    - teamName: team 1 groep 7F
+      pass: password
+      teamID: 38
+      assignmentIndex: 0
+      score: 3
+      chosen: 1
+    - teamName: RubenTest
+      pass: 
+      teamID: 41
+      assignmentIndex: 0
+      score: 55
+      chosen: 1
+    - teamName: RubenTestTwee
+      pass: 
+      teamID: 42
+      assignmentIndex: 0
+      score: 125
+      chosen: 1
+    - teamName: Ruben2
+      pass: 
+      teamID: 43
+      assignmentIndex: 0
+      score: 77
+      chosen: 1
+    - teamName: Ruben1
+      pass: 
+      teamID: 44
+      assignmentIndex: 0
+      score: 50
+      chosen: 0
+    - teamName: NiewuTeamTest
+      pass: 
+      teamID: 57
+      assignmentIndex: 0
+      score: 0
+      chosen: 0
+    - teamName: Xtestx
+      pass: 
+      teamID: 58
+      assignmentIndex: 0
+      score: 0
+      chosen: 0
+  day: 0
+  feed: []

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef73434cf434f1f9feb82e2d90fb6d, type: 3}
+  m_Name: 206_ComboPack_7
+  m_EditorClassIdentifier: 
+  id: 40
+  packType: 0
+  requiredCompletedBefore:
+    id: -1
+    packInfo: {fileID: 0}
+  startBlocked: 1
+  blocked: 0
+  gameIDPairs:
+  - id: 115
+    gameInfo: {fileID: 11400000, guid: cab7fde1f2e7a458d863244f433da568, type: 2}
+  - id: 116
+    gameInfo: {fileID: 11400000, guid: cd2f1c02f4299438f8e1245e6261562e, type: 2}
+  - id: 117
+    gameInfo: {fileID: 11400000, guid: 3e2942d2287744e4ca55666934626211, type: 2}
+  - id: 118
+    gameInfo: {fileID: 11400000, guid: 0f035988d0928460dab46f851da681e8, type: 2}

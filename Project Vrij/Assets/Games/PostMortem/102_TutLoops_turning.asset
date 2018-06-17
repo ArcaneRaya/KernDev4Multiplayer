@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2533dfc8109f4092ba86ae04dc72777, type: 3}
+  m_Name: 102_TutLoops_turning
+  m_EditorClassIdentifier: 
+  id: 129
+  gameType: 4
+  requiredGame:
+    id: 128
+    gameInfo: {fileID: 11400000, guid: 81f8b74bdbee2427a91426e20a97c32d, type: 2}
+  completed: 0
+  completionScore: 90
+  title: Herhalen Die Koek
+  tutorialText: Je kan ook Draai Koekjes herhalen! Probeer het in dit level, kijk
+    of het lukt met 4 blokjes.
+  environment:
+    positions:
+    - {x: -1, y: 0, z: 1}
+    - {x: -1, y: 0, z: 0}
+    - {x: -1, y: 0, z: -1}
+    - {x: 0, y: 0, z: -1}
+    - {x: 1, y: 0, z: -1}
+    - {x: 1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 1}
+    - {x: -1, y: 1, z: 1}
+    - {x: 1, y: 1, z: 1}
+    - {x: 2, y: 0, z: -2}
+    - {x: 0, y: 0, z: 0}
+    - {x: -2, y: 0, z: 2}
+    cells:
+    - content: 1
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 1
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 3
+      rotation: {x: 0, y: 270, z: 0}
+    - content: 1
+      rotation: {x: -0, y: 270, z: 0}
+    - content: 2
+      rotation: {x: -0, y: 90, z: -0}
+    - content: 1
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 1
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 7
+      rotation: {x: 0, y: 270, z: 0}
+    - content: 8
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 0
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 0
+      rotation: {x: -0, y: 0, z: 0}
+    - content: 0
+      rotation: {x: -0, y: 0, z: 0}
+  availableActions:
+  - action: 0
+    amount: 0
+  - action: 1
+    amount: 0
+  - action: 2
+    amount: 0
+  - action: 3
+    amount: 0

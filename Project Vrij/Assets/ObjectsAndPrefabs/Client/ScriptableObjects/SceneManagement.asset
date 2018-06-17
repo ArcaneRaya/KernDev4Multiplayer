@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd5c676e769a43e8851353e8bdafc30, type: 3}
+  m_Name: SceneManagement
+  m_EditorClassIdentifier: 
+  natoScene:
+    sceneAsset: {fileID: 102900000, guid: 05ff6433566a54966a05ee3aacbcdd40, type: 3}
+    sceneName: Scenes/TabletClient/GameNatoCrossreferences
+  hackScene:
+    sceneAsset: {fileID: 102900000, guid: 8fbc109ac9d754aba9ca3451e8a35ce2, type: 3}
+    sceneName: Scenes/TabletClient/Hacked
+  visualProgrammingScene:
+    sceneAsset: {fileID: 102900000, guid: 3f29ee3f57177477fbda5a7c8a9c9f5a, type: 3}
+    sceneName: Scenes/TabletClient/VisualProgramming
+  wireRepair:
+    sceneAsset: {fileID: 102900000, guid: c26a85c2540ff43839acf7558d163f39, type: 3}
+    sceneName: Scenes/TabletClient/WireRepairs
+  menuOverlayScene:
+    sceneAsset: {fileID: 102900000, guid: 31bfb640a88eb4fe9831b3e86bb38cef, type: 3}
+    sceneName: Scenes/TabletClient/MainGameUI
+  teamHome:
+    sceneAsset: {fileID: 102900000, guid: 208c7f4cabe4747afbca309143f4297c, type: 3}
+    sceneName: Scenes/TabletClient/TeamHome
+  gamePicker:
+    sceneAsset: {fileID: 102900000, guid: 6bc133b1aa48d4c199100f7717f7b042, type: 3}
+    sceneName: Scenes/TabletClient/GamePicker
+  socialFeed:
+    sceneAsset: {fileID: 0}
+    sceneName: 
+  messageDisplay:
+    sceneAsset: {fileID: 102900000, guid: 78bedb4d65b52461bb7011b05424a304, type: 3}
+    sceneName: Scenes/TabletClient/MessageDisplay
+  transmissionOverlay:
+    sceneAsset: {fileID: 102900000, guid: 14000f2f1324b40de8916eab2e50b2bd, type: 3}
+    sceneName: Scenes/TabletClient/TransmissionOverlay
+  answerBoxDisplay:
+    sceneAsset: {fileID: 102900000, guid: 4988c626124d743f1a6bb0b106c831cc, type: 3}
+    sceneName: Scenes/TabletClient/AnswerBox
+  activeGameScene: 
+  activeMenuScene: 
+  menuOverlayActivated: 0
+  transmissionOverlayActivated: 0

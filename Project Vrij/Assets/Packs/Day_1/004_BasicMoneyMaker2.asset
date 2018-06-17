@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eef73434cf434f1f9feb82e2d90fb6d, type: 3}
+  m_Name: 004_BasicMoneyMaker2
+  m_EditorClassIdentifier: 
+  id: 19
+  packType: 1
+  requiredCompletedBefore:
+    id: 18
+    packInfo: {fileID: 11400000, guid: b515be96e680b4747954a3c9cb78269c, type: 2}
+  startBlocked: 0
+  blocked: 0
+  gameIDPairs:
+  - id: 37
+    gameInfo: {fileID: 11400000, guid: 5eda9f679805a405b8f4e5e9b05cb1b9, type: 2}
+  - id: 38
+    gameInfo: {fileID: 11400000, guid: 4fb7c7627bee546f5b91bd5e300ebc06, type: 2}
+  - id: 39
+    gameInfo: {fileID: 11400000, guid: c2ffa95bcd72549fead70015d0d377cd, type: 2}
+  - id: 40
+    gameInfo: {fileID: 11400000, guid: ff5b87e8ef49c44e4bbb52fa1cae7842, type: 2}
+  - id: 41
+    gameInfo: {fileID: 11400000, guid: 43d39de36da7d415282d5205c4ce0faa, type: 2}
